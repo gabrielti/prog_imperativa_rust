@@ -14,5 +14,4 @@ Conteúdos:
     Programação Segura: introdução aos mecanismos de Rust para evitar problemas como vazamento de memória e uso de ponteiros nulos.
 
 Objetivo
-
 A disciplina proporciona uma base sólida em Rust para quem está começando, com foco em uma abordagem segura e eficiente na manipulação de dados e memória.
