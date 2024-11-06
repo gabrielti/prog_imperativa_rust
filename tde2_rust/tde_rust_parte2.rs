@@ -26,7 +26,7 @@ struct Usuario {
 struct Diretorio {
     nome: String,
     arquivos: Vec<Arquivo>,
-    permissoes: (bool, bool, bool),
+    permissoes: Permissao,
     dono: Usuario,
 }
 
@@ -59,7 +59,7 @@ impl Permissao {
 impl Arquivo {
     // Preenche a struct do arquivo
     fn new(nome: String, tamanho: u64, uid: u16, gid: u16) -> Arquivo {
-        let permissoes = Permissao::new(1, 1, 0);
+        let permissoes = Permissao::new(0, 1, 0);
         Arquivo {
             nome,
             tamanho,
@@ -67,6 +67,11 @@ impl Arquivo {
             uid,
             gid,
         }
+    }
+
+    //Seção de modificação das permissões do arquivo utilizando &mut self, autoreferencia mutavel
+    fn alterar_permissao(&mut self,  permissao_new: Permissao){
+        self.permissoes = permissao_new;
     }
 
     // Print da info na struct no formato desejado
@@ -80,6 +85,55 @@ impl Arquivo {
         );
         println!("UID: {}", self.uid);
         println!("GID: {}", self.gid);
+    }
+}
+
+impl Diretorio {
+    // Preenche a struct do diretorio
+    fn new(nome: String, dono: String) -> Diretorio {
+        let permissoes = Permissao::new(0, 1, 0);
+        Arquivo {
+            nome,
+            permissoes,
+            dono,
+            arquivos: Vec::new(), //inicializa vetor
+        }
+    } 
+    
+    // Adicionar Arquivo
+    fn adicionar_arquivo(&mut self, arquivo: Arquivo){
+        self.arquivos.push(arquivo); //empurra para o vetor o nome do arquivo adicionado ao diretorio
+    }
+
+
+    //Função para procurar o arquivo dentro do vetor e remover o nome
+    fn remove_arquivo(&mut self, nome: &str) {
+        // Loop para encontrar o índice do arquivo e remove-lo
+        let mut found = false;
+        for i in 0..self.arquivos.len() {
+            if self.arquivos[i].nome == nome {
+                self.arquivos.remove(i);
+                println!("Arquivo '{}' removido com sucesso.", nome);
+                found = true;
+                break;
+            }
+        }
+
+        if !found {
+            println!("Arquivo '{}' não encontrado.", nome);
+        }
+
+        else{
+            println!("Arquivo '{} foi encontrado e removido com sucesso", nome);
+        }
+    }
+
+    //Função para listar todos os arquivos contidos no diretorio
+    fn listar_conteudo(&self){
+        println!("Arquivos contidos no atual diretório '{}':", self.nome);
+        for arquivo in &self.arquivos {
+            println!("- {}", arquivo.nome);
+        }
     }
 }
 
