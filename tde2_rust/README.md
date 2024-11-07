@@ -18,7 +18,8 @@ src/
     3.menu_grupo.rs: Implementa o menu e as funções de manipulação dos grupos, como criação de grupo e adição/remoção de membros.
     4.menu_usuario.rs: Define o menu de operações relacionadas aos usuários, como criação de usuários e listagem de grupos do usuário.
     5.menu_diretorio.rs: Contém o menu e as funções de manipulação de diretórios e arquivos, incluindo operações de criação e gerenciamento.
-    6.utils.rs: Contém funções utilitárias usadas em várias partes do projeto, como leitura de entrada do usuário.
+    6.menu_arquivo: Define o menu de operações relacionadas aos arquivos.
+    7.utils.rs: Contém funções utilitárias usadas em várias partes do projeto, como leitura de entrada do usuário.
 
 Cada um desses módulos lida com uma parte específica do sistema, mantendo o código coeso e organizado.
 Cargo.toml
