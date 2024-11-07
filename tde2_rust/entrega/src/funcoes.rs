@@ -45,11 +45,6 @@ impl Permissao {
         }
     }
 
-    //casting para booleano
-    pub fn leitura(&self) -> bool { self.leitura != 0 } 
-    pub fn escrita(&self) -> bool { self.escrita != 0 } 
-    pub fn execucao(&self) -> bool { self.execucao != 0}
-
     pub fn octal(&self) -> u8 {
         self.leitura * 4 + self.escrita * 2 + self.execucao * 1
     }
